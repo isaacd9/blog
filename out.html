@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<head>
+<title>Picoblog</title>
+<style>
+body {
+	margin: 0 auto;
+	padding: 2em 0px;
+	max-width: 800px;
+	color: #444;
+	font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.4em;
+}
+h1,h2,h3,h4   {color: #000;}
+a {color: #000;}
+a:visited {color: #888;}
+img {max-width: 800px;}
+code {
+  background-color: #EEE;
+  color: #444;
+}
+pre {
+  background-color: #EEE;
+  color: #444;
+  padding: 1em;
+}
+</style>
+</head>
+<body>
+<h4 style="padding-bottom: 2em">Picoblog</h4>
+
+  <hr style="margin: 2em 0" />
+  <div>
+  <div style="text-align: right">
+    <h3 id="Hello Picoblog" style="margin-bottom: .5em">Hello Picoblog</h3>
+    <b>Updated November 29nd, 2020</b>
+  </div>
+  <h1>Hello Picoblog!</h1>
+
+<h2>The world&rsquo;s tiniest blogging platform</h2>
+
+<p>(maybe, I haven&rsquo;t checked)</p>
+
+<p><img src="https://rakhim.org/images/honestly-undefined/blogging.jpg" alt="Blogging vs. blog setups" /></p>
+
+<p>My name is Isaac. I&rsquo;m an engineer at <a href="http://stripe.com/">Stripe</a>, where I
+worked on high availability, disaster recovery, and compliance with
+international data sovereignty rules. I&rsquo;ve written a blogging platform. In
+fact, it&rsquo;s where you&rsquo;re reading this blog post right now.</p>
+
+<p>It&rsquo;s written in <a href="https://golang.org/">Go</a> (you know, like):</p>
+
+<pre><code>func main() {
+  fmt.Printf(&quot;hi there cruel world&quot;)
+}
+</code></pre>
+
+<p>This blogging platform, called Picoblog, is <em>extremely simple</em>. Heavily
+inspired on a project by my coworker <a href="https://seenaburns.com/">Seena</a>, called
+<a href="https://github.com/seenaburns/picofeed">Picofeed</a>, it works by synthesizing a
+list of blog posts into an HTML file and optional RSS feed. Blog posts are
+written directly as Markdown, so they&rsquo;re easy to draft in your favorite editor
+(or Dropbox Paper) and render out directly as HTML.</p>
+
+<p>To specify a list of files to bloggify, simply write a file listing out the
+locations of blog posts and the dates at which they were published:</p>
+
+<pre><code>posts/Hello Picoblog.md, 2020-11-29
+</code></pre>
+
+<p>And point <code>picoblog</code> at it. It&rsquo;ll generate
+HTML to stdout. Redirect it to a file to host
+it as a static site:</p>
+
+<pre><code>picoblog --list posts.txt &gt; out.html
+</code></pre>
+
+<p>Post titles are set by the filename (without extension or path). The date is
+set by updating the date above using the same format. The order of posts is
+determined by their order in the file, making it possible to update the edited
+date without causing an ordering conflict. Originally, I was just going to use the
+modified time of the post, but this got annoying when fixing typos. Now you can
+set it manually.</p>
+
+<p>At time of writing, Picoblog&rsquo;s entire codebase is 279 lines of code, including
+the template (not bad if I say so myself) (also this cheats a bit because it
+uses Blackfriday as a renderer which is many more lines of code). That said,
+It&rsquo;s pretty feature packed. It supports all of the syntax of Markdown, previews
+(by generating a preview using the <code>./picoblog</code> CLI tool), and permalinks (by
+referring to the <code>id</code> of the post title).</p>
+
+<p>A reasonable question you might be asking yourself is: &ldquo;Why did Isaac choose to
+spend his time writing a teeny tiny blogging platform when so many great ones
+already exist, like Jekyll, Hugo, and hosted ones like Svbtle?&rdquo;. I don&rsquo;t have a
+good answer to that.</p>
+
+<p>If you like the way <code>picoblog</code> looks and want to use it for yourself, the code
+is here:
+<a href="https://github.com/isaacd9/picoblog">https://github.com/isaacd9/picoblog</a>. I&rsquo;d
+be happy to take any pull requests against it.</p>
+
+  </div>
+
+</body>
